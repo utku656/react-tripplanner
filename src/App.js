@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {FormGroup,FormControl,FormLabel,Alert} from '@mui/material';
+import { FormGroup, FormControl, FormLabel, Alert } from '@mui/material';
 import Checkboxes from './components/checkboxes/checkboxes';
 import ImageList from './components/ImageList/imageList';
 import Plans from './components/plans/plans';
@@ -7,19 +7,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import './App.css';
 import { getImageBySearch } from './api'
-const cities = [
-  ['Paris', 500],
-  ['London', 450],
-  ['Barselona', 400],
-  ['Madrid', 350],
-  ['Rome', 300],
-  ['Amsterdam', 250],
-  ['Prague', 200],
-  ['Brussels', 150],
-  ['Budapest', 100],
-  ['Istanbul', 50]
-];
-const BUDGET = 3000;
+import { CITY_LIST, BUDGET } from './constants'
+
 const selected = [];
 const selectedCost = [];
 
@@ -27,15 +16,15 @@ function App() {
 
   const [isMoreThanThree, setIsMoreThanThree] = useState(false);
   const [selectedCities, setSelectedCities] = useState([]);
-  const [costs, setCosts] = useState([]);
+  const [cityCosts, setCityCosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [cityPhotos, setCityPhotos] = useState([]);
   const [plans, setPlans] = useState([]);
 
   const handleOnChangeCities = (checked, index, name) => {
     if (checked) {
-      selected.push(cities[index]);
-      selectedCost.push(cities[index][1]);
+      selected.push(CITY_LIST[index]);
+      selectedCost.push(CITY_LIST[index][1]);
     } else {
       selected.forEach((city, index) => {
         if (city.includes(name)) {
@@ -45,82 +34,70 @@ function App() {
       })
     }
     setSelectedCities(selected);
-    setCosts(selectedCost);
+    setCityCosts(selectedCost);
   }
   const handleFirstPlan = (cost, plan, min) => {
     while (min <= BUDGET - cost) {
-      costs.forEach((element, index) => {
-        if (cost + element > BUDGET) {
-          return;
+      for (let index = 0; index < cityCosts.length; index++) {
+        if (cost + cityCosts[index] > BUDGET) {
+          continue;
         } else {
-          cost = cost + element;
+          cost = cost + cityCosts[index];
           plan[index] = plan[index] + 1;
-
         }
-      });
+      }
     }
     return plan;
-
   }
   const handleSecondPlan = (cost, plan, min) => {
-
     while (min <= BUDGET - cost) {
-      costs.forEach((element, index) => {
-        if (cost + element > BUDGET) {
-          return;
-        } else if( index % 2 === 0 ){
-          if (cost + 2*element > BUDGET) {
-            cost = cost + element;
-          plan[index] = plan[index] + 1;
-          }else{
-            cost = cost + 2*element;
+      for (let index = 0; index < cityCosts.length; index++) {
+        if (cost + cityCosts[index] > BUDGET) {
+          continue;
+        } else if (index % 2 === 0) {
+          if (cost + 2 * cityCosts[index] > BUDGET) {
+            cost = cost + cityCosts[index];
+            plan[index] = plan[index] + 1;
+          } else {
+            cost = cost + 2 * cityCosts[index];
             plan[index] = plan[index] + 2;
           }
-          
-
-        } else{
-          cost = cost + element;
+        } else {
+          cost = cost + cityCosts[index];
           plan[index] = plan[index] + 1;
         }
-
-      });
+      }
     }
     return plan;
-
   }
   const handleThirdPlan = (cost, plan, min) => {
-
     while (min <= BUDGET - cost) {
-      costs.forEach((element, index) => {
-        if (cost + element > BUDGET) {
-          return;
-        }else if( index % 2 === 1 ){
-          if (cost + 2*element > BUDGET) {
-            cost = cost + element;
-          plan[index] = plan[index] + 1;
-          }else{
-            cost = cost + 2*element;
+      for (let index = 0; index < cityCosts.length; index++) {
+        if (cost + cityCosts[index] > BUDGET) {
+          continue;
+        } else if (index % 2 === 1) {
+          if (cost + 2 * cityCosts[index] > BUDGET) {
+            cost = cost + cityCosts[index];
+            plan[index] = plan[index] + 1;
+          } else {
+            cost = cost + 2 * cityCosts[index];
             plan[index] = plan[index] + 2;
           }
-          
-
-        } else{
-          cost = cost + element;
+        } else {
+          cost = cost + cityCosts[index];
           plan[index] = plan[index] + 1;
         }
-
-      });
+      }
     }
     return plan;
-
   }
   const handlePlanArrengement = () => {
     let cost = 0;
     let plansArray = [];
-    let plan = Array(costs.length).fill(0);
-    let secondPlan = Array(costs.length).fill(0);
-    let thirdPlan = Array(costs.length).fill(0);
-    const min = Math.min(...costs)
+    let plan = Array(cityCosts.length).fill(0);
+    let secondPlan = Array(cityCosts.length).fill(0);
+    let thirdPlan = Array(cityCosts.length).fill(0);
+    const min = Math.min(...cityCosts)
 
     plansArray.push(handleFirstPlan(cost, plan, min));
     plansArray.push(handleSecondPlan(cost, secondPlan, min));
@@ -164,24 +141,24 @@ function App() {
   return (
     <div className='all-page'>
       {isMoreThanThree ?
-        <Alert severity="info" 
-        className='alarm-info'>
+        <Alert severity="info"
+          className='alarm-info'>
           Please select at least 3 city!
-          </Alert> : (null)
+        </Alert> : (null)
       }
       <div className='trip-main'>
-        <FormControl 
-        component="fieldset">
-          <FormLabel 
-          component="legend" 
-          className='label'>
+        <FormControl
+          component="fieldset">
+          <FormLabel
+            component="legend"
+            className='label'>
             Choose locations that you want to travel
-            </FormLabel>
-          <FormGroup 
-          aria-label="position" 
-          row 
-          className='checkbox-form-group'>
-            {cities.map((city, index) => (
+          </FormLabel>
+          <FormGroup
+            aria-label="position"
+            row
+            className='checkbox-form-group'>
+            {CITY_LIST.map((city, index) => (
               <Checkboxes
                 name={city[0]}
                 cost={city[1]}
@@ -204,18 +181,18 @@ function App() {
       <div className='images-main'>
         {cityPhotos.map((item, index) => (
 
-          <ImageList 
-          photos={item.data.photos} />
+          <ImageList
+            photos={item.data.photos} />
         ))}
       </div>
       <div className='plans-scope'>
         {plans.map((item, index) => (
           <div>
-            <div className={`plans-header${index}`}> Plan {index+1}</div>
-          <Plans 
-          plan={item} 
-          cities={selectedCities} 
-          index={index} />
+            <div className={`plans-header${index}`}> Plan {index + 1}</div>
+            <Plans
+              plan={item}
+              cities={selectedCities}
+              index={index} />
           </div>
         ))}
       </div>

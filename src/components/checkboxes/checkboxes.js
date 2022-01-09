@@ -10,7 +10,7 @@ function Checkboxes(props) {
 
     <FormControlLabel
           value={props.name}
-          control={<Checkbox className='checkbox' id={`${props.index}`} />}
+          control={<Checkbox className='checkbox' key={`${props.index}`} />}
           label={props.name}
           labelPlacement="end"
           onChange={(event)=>props.handleOnChangeCities(event.target.checked , props.index,props.name)}

@@ -1,12 +1,13 @@
 .trip-main{
-  background-color: #58D68D;
   border-radius: 25px;
-  border: 2px solid #73AD21;
+  border: 2px solid #4cb9f8;
   position: absolute;
   top: 10%;
   left: 35%;
   width: 25rem;
   height: 20rem;
+  background-image: url(./assets/travel.jpg);
+  background-size: cover;
 }
 .checkbox-form-group{
   margin: 1rem;
@@ -61,4 +62,9 @@
     font-size: 1rem;
     z-index: 10;
     margin-left: 4rem;
+}
+.label{
+  font-size: 1rem!important;
+  font-weight: 700!important;
+  top: 1rem!important;
 }
