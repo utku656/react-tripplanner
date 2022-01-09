@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FormGroup, FormControl, FormLabel, Alert } from '@mui/material';
+import { FormGroup, FormControl, FormLabel, Alert, TextField } from '@mui/material';
 import Checkboxes from './components/checkboxes/checkboxes';
 import ImageList from './components/ImageList/imageList';
 import Plans from './components/plans/plans';
@@ -7,7 +7,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import './App.css';
 import { getImageBySearch } from './api'
-import { CITY_LIST, BUDGET } from './constants'
+import { CITY_LIST } from './constants'
 
 const selected = [];
 const selectedCost = [];
@@ -20,6 +20,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [cityPhotos, setCityPhotos] = useState([]);
   const [plans, setPlans] = useState([]);
+  const [budgetInput, setBudgetInput] = useState(1);
+  const [totalCost, setTotalCost] = useState(0);
+  let planCost = Array(cityCosts.length).fill(0);
+
 
   const handleOnChangeCities = (checked, index, name) => {
     if (checked) {
@@ -37,9 +41,10 @@ function App() {
     setCityCosts(selectedCost);
   }
   const handleFirstPlan = (cost, plan, min) => {
-    while (min <= BUDGET - cost) {
+
+    while (min <= budgetInput - cost) {
       for (let index = 0; index < cityCosts.length; index++) {
-        if (cost + cityCosts[index] > BUDGET) {
+        if (cost + cityCosts[index] > budgetInput) {
           continue;
         } else {
           cost = cost + cityCosts[index];
@@ -47,15 +52,17 @@ function App() {
         }
       }
     }
+    planCost[0] = cost;
+    setTotalCost(planCost);
     return plan;
   }
   const handleSecondPlan = (cost, plan, min) => {
-    while (min <= BUDGET - cost) {
+    while (min <= budgetInput - cost) {
       for (let index = 0; index < cityCosts.length; index++) {
-        if (cost + cityCosts[index] > BUDGET) {
+        if (cost + cityCosts[index] > budgetInput) {
           continue;
         } else if (index % 2 === 0) {
-          if (cost + 2 * cityCosts[index] > BUDGET) {
+          if (cost + 2 * cityCosts[index] > budgetInput) {
             cost = cost + cityCosts[index];
             plan[index] = plan[index] + 1;
           } else {
@@ -68,15 +75,17 @@ function App() {
         }
       }
     }
+    planCost[1] = cost;
+    setTotalCost(planCost);
     return plan;
   }
   const handleThirdPlan = (cost, plan, min) => {
-    while (min <= BUDGET - cost) {
+    while (min <= budgetInput - cost) {
       for (let index = 0; index < cityCosts.length; index++) {
-        if (cost + cityCosts[index] > BUDGET) {
+        if (cost + cityCosts[index] > budgetInput) {
           continue;
         } else if (index % 2 === 1) {
-          if (cost + 2 * cityCosts[index] > BUDGET) {
+          if (cost + 2 * cityCosts[index] > budgetInput) {
             cost = cost + cityCosts[index];
             plan[index] = plan[index] + 1;
           } else {
@@ -89,6 +98,8 @@ function App() {
         }
       }
     }
+    planCost[2] = cost;
+    setTotalCost(planCost);
     return plan;
   }
   const handlePlanArrengement = () => {
@@ -115,7 +126,7 @@ function App() {
     } else {
       setLoading(true);
       handlePlanArrengement();
-      selectedCities.forEach((element, index) => {
+      selectedCities.forEach(element => {
         const promise = getImageBySearch(element[0]);
         promises.push(promise);
       });
@@ -124,6 +135,13 @@ function App() {
         setLoading(false);
 
       })
+    }
+  }
+  const handleChangeBudget = (value) => {
+    const regex = new RegExp('^[1-9]+[0-9]*$');
+    if (regex.test(parseInt(value))) {
+      setBudgetInput(value);
+
     }
   }
   useEffect(() => {
@@ -146,7 +164,17 @@ function App() {
           Please select at least 3 city!
         </Alert> : (null)
       }
+      <TextField
+        id="outlined-number"
+        label="Budget"
+        type='number'
+        className='budget-input'
+        value={budgetInput}
+        helperText="Budget must be a number that greater than 0"
+        onChange={(event) => handleChangeBudget(event.target.value)}
+      />
       <div className='trip-main'>
+
         <FormControl
           component="fieldset">
           <FormLabel
@@ -182,6 +210,7 @@ function App() {
       <div className='images-main'>
         {cityPhotos.map((item, index) => (
           <ImageList
+            city={selectedCities?.[index]?.[0]}
             key={index}
             photos={item.data.photos} />
         ))}
@@ -191,6 +220,7 @@ function App() {
           <div key={index}>
             <div className={`plans-header${index}`}> Plan {index + 1}</div>
             <Plans
+              total={totalCost[index]}
               plan={item}
               cities={selectedCities}
               index={index} />

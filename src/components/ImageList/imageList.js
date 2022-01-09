@@ -7,9 +7,9 @@ function Images(props) {
 
   return (
     <div className='imagelist-main'>
-
+      <p className='imagelist-header'>{props.city}</p>
       <ImageList sx={{ width: 500, height: 250 }} cols={3} >
-        {props.photos.map((item,index) => (
+        {props.photos.map((item, index) => (
           <ImageListItem key={item.id}>
             <img
               key={index}

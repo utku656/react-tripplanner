@@ -1,9 +1,15 @@
 .imagelist-main{
-    margin: 0 0 1rem 2rem;
+    margin: 0 0 3rem 2rem;
     height: 250px;
-    display: flex;
+    position: relative;
 }
 .plans{
     position: relative;
     width: calc( 100% - 550px);
+}
+.imagelist-header{
+    position: relative;
+    font-size: 1rem;
+    font-weight: 700;
+    left: 13rem;
 }

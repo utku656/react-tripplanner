@@ -1,7 +1,7 @@
 export const CITY_LIST = [
     ['Paris', 500],
     ['London', 450],
-    ['Barselona', 400],
+    ['Barcelona', 400],
     ['Madrid', 350],
     ['Rome', 300],
     ['Amsterdam', 250],

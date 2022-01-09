@@ -2,7 +2,7 @@
   border-radius: 25px;
   border: 2px solid #4cb9f8;
   position: absolute;
-  top: 10%;
+  top: 12%;
   left: 35%;
   width: 25rem;
   height: 20rem;
@@ -68,4 +68,26 @@
   font-weight: 700!important;
   top: 1rem!important;
   color:#1976d2!important;
+}
+.budget-input{
+  position: absolute!important;
+    top: 3%;
+    left: 35%;
+    width: 25rem;
+    height: 20rem;
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+ 
+  border-color: #1976d2!important;
+}
+.css-1wc848c-MuiFormHelperText-root {
+  color: red!important;  
+}
+.css-13b6i42-MuiFormLabel-root-MuiInputLabel-root {
+  color: #1976d2!important;
+  
+}
+.css-1kty9di-MuiFormLabel-root-MuiInputLabel-root{
+  color: #1976d2!important;
+
 }

@@ -6,8 +6,8 @@
     position: relative;
     background-color: #e4c0a8;
     border-radius: 10px;
-    font-weight: 500;
-    font-size: 2rem;
+    font-weight: 700;
+    font-size: 1.2rem;
     border: 2px solid #c08457;
     color: navy;
 }
@@ -49,7 +49,7 @@
 .show-city{
     position: relative;
     margin-top: 3rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 .show-cost{
@@ -60,5 +60,14 @@
 }
 .plans-childs{
     height: 250px;
+    margin-bottom: 3rem;
+}
+.plan-days{
+    top: 0.5rem;
+    position: relative;
+}
+.total-cost{
+    font-size: 1rem;
+    font-weight: 700;
     margin-bottom: 1rem;
 }
