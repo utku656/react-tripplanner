@@ -7,7 +7,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import './App.css';
 import { getImageBySearch } from './api'
-import { CITY_LIST } from './constants'
+import { CITY_LIST , REGEX_POSITIVE_NUMBER } from './constants'
 
 const selected = [];
 const selectedCost = [];
@@ -138,7 +138,7 @@ function App() {
     }
   }
   const handleChangeBudget = (value) => {
-    const regex = new RegExp('^[1-9]+[0-9]*$');
+    const regex = new RegExp(REGEX_POSITIVE_NUMBER);
     if (regex.test(parseInt(value))) {
       setBudgetInput(value);
 

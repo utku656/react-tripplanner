@@ -10,4 +10,4 @@ export const CITY_LIST = [
     ['Budapest', 100],
     ['Istanbul', 50]
   ];
-export const BUDGET = 3000;
+export const REGEX_POSITIVE_NUMBER = '^[1-9]+[0-9]*$';
