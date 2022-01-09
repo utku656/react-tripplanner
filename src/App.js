@@ -133,6 +133,7 @@ function App() {
     if (selectedCities.length < 3) {
       setIsMoreThanThree(true);
       setCityPhotos([]);
+      setPlans([]);
 
     } else {
       setLoading(true);
