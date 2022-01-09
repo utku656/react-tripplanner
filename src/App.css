@@ -1,38 +1,64 @@
-.App {
+.trip-main{
+  background-color: #58D68D;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  position: absolute;
+  top: 10%;
+  left: 35%;
+  width: 25rem;
+  height: 20rem;
+}
+.checkbox-form-group{
+  margin: 1rem;
+}
+.loading-button{
+  position: relative;
+  width: 50%;
+  align-self: center;
+}
+.label{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.images-main{
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 100%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.alarm-info{
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 20rem;
+  height: 2rem;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.plans-header0{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 500;
+    font-size: 1rem;
+    z-index: 10;
+    margin-left: 4rem;
 }
-
-.App-link {
-  color: #61dafb;
+.plans-header1{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 65%;
+  font-weight: 500;
+    font-size: 1rem;
+    z-index: 10;
+    margin-left: 4rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.plans-header2{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  font-weight: 500;
+    font-size: 1rem;
+    z-index: 10;
+    margin-left: 4rem;
 }

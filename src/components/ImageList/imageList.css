@@ -1,0 +1,9 @@
+.imagelist-main{
+    margin: 0 0 1rem 2rem;
+    height: 250px;
+    display: flex;
+}
+.plans{
+    position: relative;
+    width: calc( 100% - 550px);
+}

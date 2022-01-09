@@ -1,0 +1,49 @@
+.show-plan{
+    height: 5rem;
+    text-align: center;
+    width: 8rem;
+    margin-bottom: 10rem;
+    top: 2rem;
+    position: relative;
+    background-color: #58D68D;
+    border-radius: 10px;
+    font-weight: 900;
+    font-size: 2rem;
+    border: 2px solid #73AD21;
+}
+.plans-main0{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    border: 2px solid #4cb9f8;
+    width: 10rem;
+    text-align: -webkit-center;
+}
+.plans-main1{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    border-radius: 10px;
+    border: 2px solid #4cb9f8;
+    width: 10rem;
+    text-align: -webkit-center;
+}
+.plans-main2{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    border-radius: 10px;
+    border: 2px solid #4cb9f8;
+    width: 10rem;
+    text-align: -webkit-center;
+}
+.show-city{
+    position: relative;
+    bottom: 5rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
