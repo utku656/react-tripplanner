@@ -39,9 +39,9 @@
   top: 50%;
   left: 50%;
   font-weight: 500;
-    font-size: 1rem;
-    z-index: 10;
-    margin-left: 4rem;
+  font-size: 1rem;
+  z-index: 10;
+  margin-left: 4rem;
 }
 .plans-header1{
   display: block;
@@ -49,9 +49,9 @@
   top: 50%;
   left: 65%;
   font-weight: 500;
-    font-size: 1rem;
-    z-index: 10;
-    margin-left: 4rem;
+  font-size: 1rem;
+  z-index: 10;
+  margin-left: 4rem;
 }
 .plans-header2{
   display: block;
@@ -59,12 +59,13 @@
   top: 50%;
   left: 80%;
   font-weight: 500;
-    font-size: 1rem;
-    z-index: 10;
-    margin-left: 4rem;
+  font-size: 1rem;
+  z-index: 10;
+  margin-left: 4rem;
 }
 .label{
   font-size: 1rem!important;
   font-weight: 700!important;
   top: 1rem!important;
+  color:#1976d2!important;
 }

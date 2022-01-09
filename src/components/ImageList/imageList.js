@@ -12,8 +12,7 @@ function Images(props) {
         {props.photos.map((item,index) => (
           <ImageListItem key={item.id}>
             <img
-                            key={index}
-
+              key={index}
               src={item.src.medium}
               srcSet={item.src.medium}
               alt={item.alt}
