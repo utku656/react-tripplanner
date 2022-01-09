@@ -160,6 +160,7 @@ function App() {
             className='checkbox-form-group'>
             {CITY_LIST.map((city, index) => (
               <Checkboxes
+                key={index}
                 name={city[0]}
                 cost={city[1]}
                 index={index}
@@ -180,14 +181,14 @@ function App() {
       </div>
       <div className='images-main'>
         {cityPhotos.map((item, index) => (
-
           <ImageList
+            key={index}
             photos={item.data.photos} />
         ))}
       </div>
       <div className='plans-scope'>
         {plans.map((item, index) => (
-          <div>
+          <div key={index}>
             <div className={`plans-header${index}`}> Plan {index + 1}</div>
             <Plans
               plan={item}

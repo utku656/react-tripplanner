@@ -9,6 +9,8 @@ function Checkboxes(props) {
     <div className='checkboxes-main'>
 
     <FormControlLabel
+                    key={props.index}
+
           value={props.name}
           control={<Checkbox className='checkbox' key={`${props.index}`} />}
           label={props.name}
